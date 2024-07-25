@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import { addUser, addTechnology, getAllUsers, getTechnologiesByUsername, patchTechnologie } from '../controllers/userController';
+import { addUser, addTechnology, getAllUsers, getTechnologiesByUsername, patchTechnologie, putTechnologie } from '../controllers/userController';
 import { checkExistsUserAccount } from '../middlewares/checkExistsUserAccount';
 import { checkExistsUserName } from '../middlewares/checkExistsUserName';
 
@@ -14,5 +14,7 @@ router.post('/users/:username/technologies', checkExistsUserAccount, addTechnolo
 router.get('/users/:username/technologies', checkExistsUserAccount, getTechnologiesByUsername);
 
 router.patch('/users/:username/technologies/:id', checkExistsUserAccount, patchTechnologie);
+
+router.put('/users/:username/technologies/:id', checkExistsUserAccount, putTechnologie);
 
 export default router;

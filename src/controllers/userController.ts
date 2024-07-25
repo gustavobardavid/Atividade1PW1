@@ -52,13 +52,29 @@ export const getTechnologiesByUsername = (req: Request, res: Response): void => 
 };
 
 export const patchTechnologie = (req: Request, res: Response): void => {
-  const { username, id } = req.params;
-  const userIndex = users.findIndex(user => user.username === username);
-  const technologyIndex = users[userIndex].technologies.findIndex(tech => tech.id === id);
+  const { user } = req.body;
+  const { id } = req.params;
+  const technologyIndex = user.technologies.findIndex(function(tech: Technology){
+    return tech.id === id;
+  });
   if (technologyIndex === -1) {
     res.status(404).json({ message: 'Tecnologia não encontrada.' });
     return;
   }
-  users[userIndex].technologies[technologyIndex].studied = true;
-  res.status(200).json({ message: 'Campo studied modificado com sucesso.', technology: users[userIndex].technologies[technologyIndex] });
+  user.technologies[technologyIndex].studied = true;
+  res.status(200).json({ message: 'Campo studied modificado com sucesso.', technology: user.technologies[technologyIndex] });
+}
+
+export const putTechnologie = (req: Request, res: Response): void => {
+  const { user, title } = req.body;
+  const { id } = req.params;
+  const technologyIndex = user.technologies.findIndex(function(tech: Technology){
+    return tech.id === id;
+  });
+  if (technologyIndex === -1) {
+    res.status(404).json({ message: 'Tecnologia não encontrada.' });
+    return;
+  }
+  user.technologies[technologyIndex].title = title;
+  res.status(200).json({ message: 'Campo studied modificado com sucesso.', technology: user.technologies[technologyIndex] });
 }
