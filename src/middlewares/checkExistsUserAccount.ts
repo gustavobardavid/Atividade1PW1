@@ -1,6 +1,6 @@
 
 import { Request, Response, NextFunction } from 'express';
-import { users } from "../db/db";
+import { users } from "../database/database";
 
 export const checkExistsUserAccount = (req: Request, res: Response, next: NextFunction): void => {
   const userName = req.params.username; 

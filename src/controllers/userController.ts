@@ -1,7 +1,7 @@
 
 import { Request, Response } from 'express';
 import { User, createUser } from '../models/user';
-import { users } from "../db/db";
+import { users } from "../database/database";
 import { createTechnology, Technology } from '../models/technology';
 import { v4 as uuidv4 } from 'uuid';
 
