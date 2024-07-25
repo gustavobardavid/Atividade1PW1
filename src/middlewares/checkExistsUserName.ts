@@ -1,7 +1,7 @@
 
 import { Request, Response, NextFunction } from 'express';
 import { User } from '../models/user';
-import { users } from "../db/db";
+import { users } from "../database/database";
 
 
 export const checkExistsUserName = (req: Request, res: Response, next: NextFunction): void => {
